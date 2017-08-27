@@ -20,7 +20,7 @@
             "database"
         ],
         "psr-4": {
-            "AuthServer\\": "app/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {

@@ -138,8 +138,8 @@ return [
     'providers' => [
 
         /*
-              * Laravel Framework Service Providers...
-              */
+         * Laravel Framework Service Providers...
+         */
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -171,13 +171,13 @@ return [
         /*
          * Application Service Providers...
          */
-        AuthServer\Providers\AppServiceProvider::class,
-        AuthServer\Providers\AuthServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
-        AuthServer\Providers\EventServiceProvider::class,
-        AuthServer\Providers\RouteServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
-        //Passport
+        //passport
         Laravel\Passport\PassportServiceProvider::class,
 
 
