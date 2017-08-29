@@ -7,11 +7,15 @@
 cd docker
 docker-compose build
 docker-compose up -d
-docker-compose exec php-fpm-api composer install
-docker-compose exec php-fpm-api cp .env.example .env
-docker-compose exec php-fpm-auth composer install
-docker-compose exec php-fpm-auth cp .env.example .env
-docker-compose exec php-fpm-auth ./artisan migrate --seed
+docker-compose exec php-fpm-api.local composer install
+docker-compose exec php-fpm-api.local cp .env.example .env
+sudo chmod -R a+w ../api/storage
+sudo chmod -R a+w ../api/bootstrap/cache/
+docker-compose exec php-fpm-auth.local composer install
+docker-compose exec php-fpm-auth.local cp .env.example .env
+sudo chmod -R a+w ../auth/storage
+sudo chmod -R a+w ../auth/bootstrap/cache/
+docker-compose exec php-fpm-auth.local ./artisan migrate --seed
 ```
 * Demo app ready
 
