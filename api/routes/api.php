@@ -13,6 +13,17 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::get('/users', function (Request $request) {
+
+    $users = App\User::all('id', 'name', 'email');
+    return $users;
+});
+
+Route::middleware('auth:api')->get('/user/{id}', function ($id) {
+    $user = App\User::find($id);
+    if (!$user) {
+        throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('User not found');
+    }
+    return $user;
 });

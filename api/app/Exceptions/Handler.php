@@ -1,6 +1,6 @@
 <?php
 
-namespace Api\Exceptions;
+namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;

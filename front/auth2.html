@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AUTH2 empty page</title>
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
+    <script>
+        var OAUTH_AUTHORIZE_URL = 'https://auth.127.0.0.1.xip.io/oauth/authorize';
+        var OAUTH_TOKEN_URL = 'https://auth.127.0.0.1.xip.io/oauth/token';
+        var OAUTH_CLIENT_ID = 999;
+        var OAUTH_CLIENT_SECRET_CODE = 'zhsWEfnOHgsOFMj1GinFri4mGihOKJ3IWB5ySHbs';
+
+        $(function () {
+            parseQueryString = function () {
+
+                var str = window.location.search;
+                var objURL = {};
+
+                str.replace(
+                    new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+                    function ($0, $1, $2, $3) {
+                        objURL[$1] = $3;
+                    }
+                );
+                return objURL;
+            };
+
+            var params = parseQueryString();
+            if (params.code != undefined) {
+
+                $.ajax({
+                    url: OAUTH_TOKEN_URL,
+                    data: {
+                        grant_type: 'authorization_code',
+                        client_id: OAUTH_CLIENT_ID,
+                        client_secret: OAUTH_CLIENT_SECRET_CODE,
+                        redirect_uri: 'https://auth.127.0.0.1.xip.io/auth2.html',
+                        code: params.code,
+                    },
+                    type: 'POST',
+                    success: function (data) {
+                        var access_token;
+                        if ((data instanceof Object)) {
+                            access_token = data.access_token;
+                        } else {
+                            access_token = data.getParam("access_token");
+                        }
+                        successCallback(access_token, data);
+                    },
+                    error: function (error) {
+                        errorCallback(error, error);
+                    }
+                });
+            } else {
+                alert('Unknown error');
+            }
+        })
+    </script>
+</head>
+<body>
+Loading...
+</body>
+</html>
